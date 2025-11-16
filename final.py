@@ -111,15 +111,15 @@ def solve_barrel_heating(total_time, time_steps, h, r, initial_temp, gas_temp, a
     def AlphaIn(t):
         """ Функция коэффициента теплоотдачи газа от времени на внутренней поверхности """
         if flag:
-            return alpha_out + (alpha_in - alpha_out) * math.exp(-t / b_cooling*0.8)
+            return alpha_out + (alpha_in - alpha_out) * math.exp(-t / (b_cooling*0.8))
         else:
             return alpha_in
     
     def Ug(t):
         """ Функция внутренней температуры газа от времени """
         if flag:
-            return air_temp + (initial_temp[0] - air_temp) * math.exp(-t / b_cooling*0.8)
-            # return air_temp + (gas_temp - air_temp) * math.exp(-t / b_cooling*0.8)
+            # return air_temp + (initial_temp[0] - air_temp) * math.exp(-t / b_cooling*0.8)
+            return air_temp + (gas_temp - air_temp) * math.exp(-t / (b_cooling*0.8))
         else:
             return gas_temp
 
